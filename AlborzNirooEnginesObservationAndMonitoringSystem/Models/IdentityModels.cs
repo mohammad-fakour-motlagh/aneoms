@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -29,5 +30,14 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<DataModels.AssemblyPartDefinition>().HasOptional(z => z.ParentPartDefinition).WithMany(z => z.SubPartDefinitions).HasForeignKey(z => z.ParentPartDefinitionId);
+        }
+        public DbSet<DataModels.PartDefinition> PartDefinitions { get; set; }
+        public DbSet<DataModels.PartNumberModel> PartNumberModels { get; set; }
+        public DbSet<DataModels.AssemblyPartDefinition> AssemblyPartDefinitions { get; set; }
     }
 }

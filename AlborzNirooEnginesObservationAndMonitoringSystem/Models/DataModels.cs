@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,20 +10,33 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
     public class DataModels
     {
         /// <summary>
-        /// Part and partnumber definition part
+        /// Part and partnumber definition section
         /// </summary>
         public class PartNumberModel
         {
-            public int PartNumberId { get; set; }
-            public int NewerPartNumberId { get; set; }
+            [Key]
+            public int PartNumberModelId { get; set; }
+            public int? NewerPartNumberModelId { get; set; }
             public string PartNumber { get; set; }
+
+
         }
         public class PartDefinition
         {
+            [Key]
             public int PartDefinitionId { get; set; }
             public string PartDescription { get; set; }
-            public PartNumberModel PartNumberModel { get; set; }
-            public List<PartNumberModel> SubPartsPartNumberModels { get; set; }
+
+
+        }
+        public class AssemblyPartDefinition
+        {
+            [Key]
+            public int AssemblyPartDefinitionId { get; set; }
+
+            public int? ParentPartDefinitionId { get; set; }
+            public virtual AssemblyPartDefinition ParentPartDefinition { get; set; }
+            public virtual ICollection<AssemblyPartDefinition> SubPartDefinitions { get; set; }
         }
         public enum TransportCondition
         {
@@ -30,14 +45,14 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         }
         public class Part
         {
-            public int PartId { get; set; }
-            public PartDefinition PartDefinition { get; set; }
+            public int AssemblyPartId { get; set; }
+            public AssemblyPartDefinition AssemblyPartDefinition { get; set; }
             public string SerialNumber { get; set; }
             public TransportCondition TransportCondition { get; set; }
             public List<Evaluation> Evaluations { get; set; }
         }
         /// <summary>
-        /// Third person part
+        /// Third person section
         /// </summary>
         public class ThirdPerson
         {
@@ -59,7 +74,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public List<EngineProject> EngineProjects { get; set; }
         }
         /// <summary>
-        /// Documentation reference part
+        /// Documentation reference section
         /// </summary>
         public class DocumentReference
         {
@@ -93,9 +108,9 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public DateTime EvaluationDate { get; set; }
             public EvaluationResult EvaluationResult { get; set; }
             public List<DocumentReference> DocumentReferences { get; set; }
-        }        
+        }
         /// <summary>
-        /// montage demontage definition
+        /// montage demontage definition section
         /// </summary>
         public class XMontage
         {
@@ -119,7 +134,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public List<Part> Parts { get; set; }
         }
         /// <summary>
-        /// project part
+        /// project section
         /// </summary>
         public class Project
         {
@@ -131,7 +146,6 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         {
             public List<XMontage> Demontages { get; set; }
             public List<XMontage> Montages { get; set; }
-        }
-        
+        }        
     }
 }
