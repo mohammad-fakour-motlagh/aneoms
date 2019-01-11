@@ -51,6 +51,21 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public TransportCondition TransportCondition { get; set; }
             public List<Evaluation> Evaluations { get; set; }
         }
+        public enum EvaluationResult
+        {
+            Unknown = 0,
+            New = 1,
+            Reuse = 2,
+            Rebuildable = 3,
+            Out = 4
+        }
+        public class Evaluation
+        {
+            public int EvaluationId { get; set; }
+            public DateTime EvaluationDate { get; set; }
+            public EvaluationResult EvaluationResult { get; set; }
+            public List<DocumentReference> DocumentReferences { get; set; }
+        }
         /// <summary>
         /// Third person section
         /// </summary>
@@ -94,21 +109,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public ThirdPerson ThirdPerson { get; set; }
             public string ReferenceCode { get; set; }
         }
-        public enum EvaluationResult
-        {
-            Unknown=0,
-            New=1,
-            Reuse=2,
-            Rebuildable=3,
-            Out=4
-        }
-        public class Evaluation
-        {
-            public int EvaluationId { get; set; }
-            public DateTime EvaluationDate { get; set; }
-            public EvaluationResult EvaluationResult { get; set; }
-            public List<DocumentReference> DocumentReferences { get; set; }
-        }
+        
         /// <summary>
         /// montage demontage definition section
         /// </summary>
