@@ -7,6 +7,9 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
 {
     public class DataModels
     {
+        /// <summary>
+        /// Part and partnumber definition part
+        /// </summary>
         public class PartNumberModel
         {
             public int PartNumberId { get; set; }
@@ -20,26 +23,60 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public PartNumberModel PartNumberModel { get; set; }
             public List<PartNumberModel> SubPartsPartNumberModels { get; set; }
         }
-        public interface IThirdPerson
+        public enum TransportCondition
+        {
+            In = 0,
+            Out = 1
+        }
+        public class Part
+        {
+            public int PartId { get; set; }
+            public PartDefinition PartDefinition { get; set; }
+            public string SerialNumber { get; set; }
+            public TransportCondition TransportCondition { get; set; }
+            public List<Evaluation> Evaluations { get; set; }
+        }
+        /// <summary>
+        /// Third person part
+        /// </summary>
+        public class ThirdPerson
         {
             int ThirdPersonId { get; set; }
             string Name { get; set; }
         }
-        public class InSourcePerson : IThirdPerson
+        public class InSourcePerson : ThirdPerson
         {
             public int ThirdPersonId { get; set; }
             public string Name { get; set; }
         }
-        public interface IDocumentReference
-        {
-            int ThirdPersonId { get; set; }
-            IThirdPerson ThirdPerson { get; set; }
-            string ReferenceCode { get; set; }
-        }
-        public class CheckList : IDocumentReference
+        public class Contractor : ThirdPerson
         {
             public int ThirdPersonId { get; set; }
-            public IThirdPerson ThirdPerson { get; set; }
+            public string Name { get; set; }
+        }
+        public class EngineContractor : Contractor
+        {
+            public List<EngineProject> EngineProjects { get; set; }
+        }
+        /// <summary>
+        /// Documentation reference part
+        /// </summary>
+        public class DocumentReference
+        {
+            int ThirdPersonId { get; set; }
+            ThirdPerson ThirdPerson { get; set; }
+            string ReferenceCode { get; set; }
+        }
+        public class CheckList : DocumentReference
+        {
+            public int ThirdPersonId { get; set; }
+            public ThirdPerson ThirdPerson { get; set; }
+            public string ReferenceCode { get; set; }
+        }
+        public class MeetingReport : DocumentReference
+        {
+            public int ThirdPersonId { get; set; }
+            public ThirdPerson ThirdPerson { get; set; }
             public string ReferenceCode { get; set; }
         }
         public enum EvaluationResult
@@ -55,42 +92,35 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public int EvaluationId { get; set; }
             public DateTime EvaluationDate { get; set; }
             public EvaluationResult EvaluationResult { get; set; }
-            public List<IDocumentReference> DocumentReferences { get; set; }
-        }
-        public enum TransportCondition
-        {
-            In = 0,
-            Out = 1
-        }
-        public class Part
-        {
-            public int PartId { get; set; }
-            public PartDefinition PartDefinition { get; set; }
-            public string SerialNumber { get; set; }
-            public TransportCondition TransportCondition { get; set; }
-            public List<Evaluation> Evaluations { get; set; }
-        }
-        public interface IMontage
+            public List<DocumentReference> DocumentReferences { get; set; }
+        }        
+        /// <summary>
+        /// montage demontage definition
+        /// </summary>
+        public class XMontage
         {
             int IMontageId { get; set; }
             DateTime StartDate { get; set; }
             DateTime FinishDate { get; set; }
             List<Part> Parts { get; set; }
         }
-        public class Montage : IMontage
+        public class Montage : XMontage
         {
             public int IMontageId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime FinishDate { get; set; }
             public List<Part> Parts { get; set; }            
         }
-        public class Demontage : IMontage
+        public class Demontage : XMontage
         {
             public int IMontageId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime FinishDate { get; set; }
             public List<Part> Parts { get; set; }
         }
+        /// <summary>
+        /// project part
+        /// </summary>
         public class Project
         {
             public int ContractId { get; set; }
@@ -99,18 +129,9 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         }
         public class EngineProject : Project
         {
-            public List<IMontage> Demontages { get; set; }
-            public List<IMontage> Montages { get; set; }
+            public List<XMontage> Demontages { get; set; }
+            public List<XMontage> Montages { get; set; }
         }
-
-        public class Contractor : IThirdPerson
-        {
-            public int ThirdPersonId { get; set; }
-            public string Name { get; set; }
-        }
-        public class EngineContractor : Contractor
-        {
-            public List<EngineProject> EngineProjects { get; set; }
-        }
+        
     }
 }
