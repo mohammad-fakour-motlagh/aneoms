@@ -18,25 +18,25 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public int PartNumberModelId { get; set; }
             public int? NewerPartNumberModelId { get; set; }
             public string PartNumber { get; set; }
+            public string PartNumberSpecificDescription { get; set; }
 
-
-        }
-        public class PartDefinition
-        {
-            [Key]
-            public int PartDefinitionId { get; set; }
-            public string PartDescription { get; set; }
-
-
+            public int AssemblyPartDefinitionId { get; set; }
+            public virtual AssemblyPartDefinition AssemblyPartDefinition { get; set; }
         }
         public class AssemblyPartDefinition
         {
             [Key]
             public int AssemblyPartDefinitionId { get; set; }
+            public string Description { get; set; }
+            public int NumberInParent { get; set; } // -- defualt is 1 if no parent is selected
 
             public int? ParentPartDefinitionId { get; set; }
             public virtual AssemblyPartDefinition ParentPartDefinition { get; set; }
             public virtual ICollection<AssemblyPartDefinition> SubPartDefinitions { get; set; }
+
+            public virtual ICollection<PartNumberModel> PartNumberModels { get; set; }
+
+            public virtual ICollection<Part> Parts { get; set; }
         }
         public enum TransportCondition
         {
@@ -45,11 +45,15 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         }
         public class Part
         {
-            public int AssemblyPartId { get; set; }
-            public AssemblyPartDefinition AssemblyPartDefinition { get; set; }
+            [Key]
+            public int PartId { get; set; }            
             public string SerialNumber { get; set; }
             public TransportCondition TransportCondition { get; set; }
-            public List<Evaluation> Evaluations { get; set; }
+
+            public int AssemblyPartDefinitionId { get; set; }
+            public virtual AssemblyPartDefinition AssemblyPartDefinition { get; set; }
+
+            //public List<Evaluation> Evaluations { get; set; }
         }
         public enum EvaluationResult
         {
@@ -61,55 +65,41 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         }
         public class Evaluation
         {
+            [Key]
             public int EvaluationId { get; set; }
             public DateTime EvaluationDate { get; set; }
             public EvaluationResult EvaluationResult { get; set; }
-            public List<DocumentReference> DocumentReferences { get; set; }
+
+            public int? DocumentReferenceId { get; set; }
+            public virtual DocumentReference DocumentReference { get; set; }
+
+            
         }
         /// <summary>
         /// Third person section
         /// </summary>
         public class ThirdPerson
         {
-            int ThirdPersonId { get; set; }
-            string Name { get; set; }
-        }
-        public class InSourcePerson : ThirdPerson
-        {
+            [Key]
             public int ThirdPersonId { get; set; }
             public string Name { get; set; }
-        }
-        public class Contractor : ThirdPerson
-        {
-            public int ThirdPersonId { get; set; }
-            public string Name { get; set; }
-        }
-        public class EngineContractor : Contractor
-        {
-            public List<EngineProject> EngineProjects { get; set; }
+
+            public virtual ICollection<DocumentReference> DocumentReferences { get; set; }
         }
         /// <summary>
         /// Documentation reference section
         /// </summary>
         public class DocumentReference
         {
-            int ThirdPersonId { get; set; }
-            ThirdPerson ThirdPerson { get; set; }
-            string ReferenceCode { get; set; }
-        }
-        public class CheckList : DocumentReference
-        {
-            public int ThirdPersonId { get; set; }
-            public ThirdPerson ThirdPerson { get; set; }
+            [Key]
+            public int DocumentReferenceId { get; set; }            
             public string ReferenceCode { get; set; }
-        }
-        public class MeetingReport : DocumentReference
-        {
+
             public int ThirdPersonId { get; set; }
-            public ThirdPerson ThirdPerson { get; set; }
-            public string ReferenceCode { get; set; }
+            public virtual ThirdPerson ThirdPerson { get; set; }
+            
+            public virtual ICollection<Evaluation> Evaluations { get; set; }
         }
-        
         /// <summary>
         /// montage demontage definition section
         /// </summary>

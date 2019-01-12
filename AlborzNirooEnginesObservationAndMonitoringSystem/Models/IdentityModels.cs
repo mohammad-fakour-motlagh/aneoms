@@ -35,9 +35,16 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DataModels.AssemblyPartDefinition>().HasOptional(z => z.ParentPartDefinition).WithMany(z => z.SubPartDefinitions).HasForeignKey(z => z.ParentPartDefinitionId);
+            modelBuilder.Entity<DataModels.PartNumberModel>().HasRequired(z => z.AssemblyPartDefinition).WithMany(z => z.PartNumberModels).HasForeignKey(z => z.AssemblyPartDefinitionId);
+            modelBuilder.Entity<DataModels.Part>().HasRequired(z => z.AssemblyPartDefinition).WithMany(z => z.Parts).HasForeignKey(z => z.AssemblyPartDefinitionId);
+            modelBuilder.Entity<DataModels.DocumentReference>().HasRequired(z => z.ThirdPerson).WithMany(z => z.DocumentReferences).HasForeignKey(z => z.ThirdPersonId);
+            modelBuilder.Entity<DataModels.Evaluation>().HasOptional(z => z.DocumentReference).WithMany(z => z.Evaluations).HasForeignKey(z => z.DocumentReferenceId);
+
         }
-        public DbSet<DataModels.PartDefinition> PartDefinitions { get; set; }
         public DbSet<DataModels.PartNumberModel> PartNumberModels { get; set; }
         public DbSet<DataModels.AssemblyPartDefinition> AssemblyPartDefinitions { get; set; }
+        public DbSet<DataModels.Part> Parts { get; set; }
+        public DbSet<DataModels.DocumentReference> DocumentReferences { get; set; }
+        public DbSet<DataModels.ThirdPerson> ThirdPeople { get; set; }
     }
 }

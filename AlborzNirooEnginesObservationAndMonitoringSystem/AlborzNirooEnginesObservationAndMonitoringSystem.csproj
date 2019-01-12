@@ -194,13 +194,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901111348446_set-up-part-number-system.cs" />
-    <Compile Include="Migrations\201901111348446_set-up-part-number-system.Designer.cs">
-      <DependentUpon>201901111348446_set-up-part-number-system.cs</DependentUpon>
+    <Compile Include="Migrations\201901121723003_part-def-system-finished.cs" />
+    <Compile Include="Migrations\201901121723003_part-def-system-finished.Designer.cs">
+      <DependentUpon>201901121723003_part-def-system-finished.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901111408261_part-number-system-m2m-rel-setup.cs" />
-    <Compile Include="Migrations\201901111408261_part-number-system-m2m-rel-setup.Designer.cs">
-      <DependentUpon>201901111408261_part-number-system-m2m-rel-setup.cs</DependentUpon>
+    <Compile Include="Migrations\201901121728022_part-partdef-rel-created.cs" />
+    <Compile Include="Migrations\201901121728022_part-partdef-rel-created.Designer.cs">
+      <DependentUpon>201901121728022_part-partdef-rel-created.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121739419_added-docref-and-thirdpeople-rel-and-tables.cs" />
+    <Compile Include="Migrations\201901121739419_added-docref-and-thirdpeople-rel-and-tables.Designer.cs">
+      <DependentUpon>201901121739419_added-docref-and-thirdpeople-rel-and-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121751287_doc-tp-and-doc-eval-rel-defined.cs" />
+    <Compile Include="Migrations\201901121751287_doc-tp-and-doc-eval-rel-defined.Designer.cs">
+      <DependentUpon>201901121751287_doc-tp-and-doc-eval-rel-defined.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,11 +295,17 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901111348446_set-up-part-number-system.resx">
-      <DependentUpon>201901111348446_set-up-part-number-system.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901121723003_part-def-system-finished.resx">
+      <DependentUpon>201901121723003_part-def-system-finished.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901111408261_part-number-system-m2m-rel-setup.resx">
-      <DependentUpon>201901111408261_part-number-system-m2m-rel-setup.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901121728022_part-partdef-rel-created.resx">
+      <DependentUpon>201901121728022_part-partdef-rel-created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121739419_added-docref-and-thirdpeople-rel-and-tables.resx">
+      <DependentUpon>201901121739419_added-docref-and-thirdpeople-rel-and-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121751287_doc-tp-and-doc-eval-rel-defined.resx">
+      <DependentUpon>201901121751287_doc-tp-and-doc-eval-rel-defined.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
