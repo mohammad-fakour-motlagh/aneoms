@@ -39,12 +39,29 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             modelBuilder.Entity<DataModels.Part>().HasRequired(z => z.AssemblyPartDefinition).WithMany(z => z.Parts).HasForeignKey(z => z.AssemblyPartDefinitionId);
             modelBuilder.Entity<DataModels.DocumentReference>().HasRequired(z => z.ThirdPerson).WithMany(z => z.DocumentReferences).HasForeignKey(z => z.ThirdPersonId);
             modelBuilder.Entity<DataModels.Evaluation>().HasOptional(z => z.DocumentReference).WithMany(z => z.Evaluations).HasForeignKey(z => z.DocumentReferenceId);
-
+            modelBuilder.Entity<DataModels.Evaluation>().HasRequired(z => z.Part).WithMany(z => z.Evaluations).HasForeignKey(z => z.PartId);
+            modelBuilder.Entity<DataModels.Montage>().HasMany(z => z.Parts).WithMany(z => z.Montages).Map(z=>{
+                z.MapLeftKey("MontageId");
+                z.MapRightKey("PartId");
+                z.ToTable("MontageParts");
+            });
+            modelBuilder.Entity<DataModels.Demontage>().HasMany(z => z.Parts).WithMany(z => z.Demontages).Map(z => {
+                z.MapLeftKey("DemontageId");
+                z.MapRightKey("PartId");
+                z.ToTable("DemontageParts");
+            });
+            modelBuilder.Entity<DataModels.Montage>().HasOptional(z => z.EngineProject).WithMany(z => z.Montages).HasForeignKey(z => z.EngineProjectId);
+            modelBuilder.Entity<DataModels.Demontage>().HasOptional(z => z.EngineProject).WithMany(z => z.Demontages).HasForeignKey(z => z.EngineProjectId);
+            modelBuilder.Entity<DataModels.DocumentReference>().HasOptional(z => z.EngineProject).WithMany(z => z.DocumentReferences).HasForeignKey(z => z.EngineProjectId);
         }
         public DbSet<DataModels.PartNumberModel> PartNumberModels { get; set; }
         public DbSet<DataModels.AssemblyPartDefinition> AssemblyPartDefinitions { get; set; }
         public DbSet<DataModels.Part> Parts { get; set; }
         public DbSet<DataModels.DocumentReference> DocumentReferences { get; set; }
         public DbSet<DataModels.ThirdPerson> ThirdPeople { get; set; }
+        public DbSet<DataModels.Evaluation> Evaluations { get; set; }
+        public DbSet<DataModels.Montage> Montages { get; set; }
+        public DbSet<DataModels.Demontage> Demontages { get; set; }
+        public DbSet<DataModels.EngineProject> EngineProjects { get; set; }
     }
 }

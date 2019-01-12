@@ -53,7 +53,11 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public int AssemblyPartDefinitionId { get; set; }
             public virtual AssemblyPartDefinition AssemblyPartDefinition { get; set; }
 
-            //public List<Evaluation> Evaluations { get; set; }
+            public virtual ICollection<Evaluation> Evaluations { get; set; }
+
+            public virtual ICollection<Montage> Montages { get; set; }
+
+            public virtual ICollection<Demontage> Demontages { get; set; }
         }
         public enum EvaluationResult
         {
@@ -73,7 +77,8 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public int? DocumentReferenceId { get; set; }
             public virtual DocumentReference DocumentReference { get; set; }
 
-            
+            public int PartId { get; set; }
+            public virtual Part Part { get; set; }
         }
         /// <summary>
         /// Third person section
@@ -99,44 +104,51 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
             public virtual ThirdPerson ThirdPerson { get; set; }
             
             public virtual ICollection<Evaluation> Evaluations { get; set; }
+
+            public int? EngineProjectId { get; set; }
+            public virtual EngineProject EngineProject { get; set; }
         }
         /// <summary>
         /// montage demontage definition section
         /// </summary>
-        public class XMontage
+        public class Montage
         {
-            int IMontageId { get; set; }
-            DateTime StartDate { get; set; }
-            DateTime FinishDate { get; set; }
-            List<Part> Parts { get; set; }
-        }
-        public class Montage : XMontage
-        {
-            public int IMontageId { get; set; }
+            [Key]
+            public int MontageId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime FinishDate { get; set; }
-            public List<Part> Parts { get; set; }            
+
+            public virtual ICollection<Part> Parts { get; set; }
+
+            public int? EngineProjectId { get; set; }
+            public virtual EngineProject EngineProject { get; set; }
         }
-        public class Demontage : XMontage
+        public class Demontage
         {
-            public int IMontageId { get; set; }
+            public int DemontageId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime FinishDate { get; set; }
-            public List<Part> Parts { get; set; }
+
+            public virtual ICollection<Part> Parts { get; set; }
+
+            public int? EngineProjectId { get; set; }
+            public virtual EngineProject EngineProject { get; set; }
         }
         /// <summary>
         /// project section
         /// </summary>
         public class Project
         {
-            public int ContractId { get; set; }
+            [Key]
+            public int ProjectId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime FinishDate { get; set; }
         }
         public class EngineProject : Project
         {
-            public List<XMontage> Demontages { get; set; }
-            public List<XMontage> Montages { get; set; }
+            public virtual ICollection<Demontage> Demontages { get; set; }
+            public virtual ICollection<Montage> Montages { get; set; }
+            public virtual ICollection<DocumentReference> DocumentReferences { get; set; }
         }        
     }
 }

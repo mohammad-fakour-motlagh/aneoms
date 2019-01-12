@@ -210,6 +210,34 @@
     <Compile Include="Migrations\201901121751287_doc-tp-and-doc-eval-rel-defined.Designer.cs">
       <DependentUpon>201901121751287_doc-tp-and-doc-eval-rel-defined.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901121756569_added-part-eval-relation.cs" />
+    <Compile Include="Migrations\201901121756569_added-part-eval-relation.Designer.cs">
+      <DependentUpon>201901121756569_added-part-eval-relation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121815143_added-mon-demon-tables.cs" />
+    <Compile Include="Migrations\201901121815143_added-mon-demon-tables.Designer.cs">
+      <DependentUpon>201901121815143_added-mon-demon-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121820158_added-mon-part-rel.cs" />
+    <Compile Include="Migrations\201901121820158_added-mon-part-rel.Designer.cs">
+      <DependentUpon>201901121820158_added-mon-part-rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121825385_added-demon-part-rel.cs" />
+    <Compile Include="Migrations\201901121825385_added-demon-part-rel.Designer.cs">
+      <DependentUpon>201901121825385_added-demon-part-rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121829402_added-engine-project-table.cs" />
+    <Compile Include="Migrations\201901121829402_added-engine-project-table.Designer.cs">
+      <DependentUpon>201901121829402_added-engine-project-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121837090_added-engine-project-mon-demon-rels.cs" />
+    <Compile Include="Migrations\201901121837090_added-engine-project-mon-demon-rels.Designer.cs">
+      <DependentUpon>201901121837090_added-engine-project-mon-demon-rels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121847130_added-engine-project-doc-ref-rel.cs" />
+    <Compile Include="Migrations\201901121847130_added-engine-project-doc-ref-rel.Designer.cs">
+      <DependentUpon>201901121847130_added-engine-project-doc-ref-rel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataModels.cs" />
@@ -306,6 +334,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901121751287_doc-tp-and-doc-eval-rel-defined.resx">
       <DependentUpon>201901121751287_doc-tp-and-doc-eval-rel-defined.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121756569_added-part-eval-relation.resx">
+      <DependentUpon>201901121756569_added-part-eval-relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121815143_added-mon-demon-tables.resx">
+      <DependentUpon>201901121815143_added-mon-demon-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121820158_added-mon-part-rel.resx">
+      <DependentUpon>201901121820158_added-mon-part-rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121825385_added-demon-part-rel.resx">
+      <DependentUpon>201901121825385_added-demon-part-rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121829402_added-engine-project-table.resx">
+      <DependentUpon>201901121829402_added-engine-project-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121837090_added-engine-project-mon-demon-rels.resx">
+      <DependentUpon>201901121837090_added-engine-project-mon-demon-rels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121847130_added-engine-project-doc-ref-rel.resx">
+      <DependentUpon>201901121847130_added-engine-project-doc-ref-rel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

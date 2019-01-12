@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AlborzNirooEnginesObservationAndMonitoringSystem.Models;
 
 namespace AlborzNirooEnginesObservationAndMonitoringSystem.Controllers
 {
@@ -10,6 +11,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Controllers
     {
         public ActionResult Index()
         {
+            var isd = new DataModels.EngineProject() { };
             return View();
         }
 
