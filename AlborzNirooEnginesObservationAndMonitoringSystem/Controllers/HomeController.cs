@@ -11,7 +11,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Controllers
     {
         public ActionResult Index()
         {
-            var isd = new DataModels.EngineProject() { };
+            var isd = new EngineProject() { };
             return View();
         }
 

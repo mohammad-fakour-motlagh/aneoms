@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201901121847130_added-engine-project-doc-ref-rel.Designer.cs">
       <DependentUpon>201901121847130_added-engine-project-doc-ref-rel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901131932456_deleted-datamodels-class.cs" />
+    <Compile Include="Migrations\201901131932456_deleted-datamodels-class.Designer.cs">
+      <DependentUpon>201901131932456_deleted-datamodels-class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataModels.cs" />
@@ -355,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901121847130_added-engine-project-doc-ref-rel.resx">
       <DependentUpon>201901121847130_added-engine-project-doc-ref-rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131932456_deleted-datamodels-class.resx">
+      <DependentUpon>201901131932456_deleted-datamodels-class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
