@@ -11,7 +11,14 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Controllers
     {
         public ActionResult Index()
         {
-            var isd = new EngineProject() { };
+            var db = new ApplicationDbContext();
+
+            var apd1 = new AssemblyPartDefinition() { Description = "CrankShaft", NumberInParent = 1 };
+            db.AssemblyPartDefinitions.Add(apd1);
+            db.SaveChanges();
+            var pnm1 = new PartNumberModel() { PartNumber = "8034708", PartNumberSpecificDescription = "cat_300",AssemblyPartDefinitionId=apd1.AssemblyPartDefinitionId };
+            db.PartNumberModels.Add(pnm1);
+            db.SaveChanges();
             return View();
         }
 
