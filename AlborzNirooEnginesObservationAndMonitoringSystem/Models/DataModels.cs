@@ -50,7 +50,7 @@ namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
 
         public int AssemblyPartDefinitionId { get; set; }
         public virtual AssemblyPartDefinition AssemblyPartDefinition { get; set; }
-
+        
         public virtual ICollection<Evaluation> Evaluations { get; set; }
 
         public virtual ICollection<Montage> Montages { get; set; }

@@ -5,5 +5,8 @@ using System.Web;
 
 namespace AlborzNirooEnginesObservationAndMonitoringSystem.Models
 {
+    public class PartDefinitionViewModel
+    {
 
+    }
 }
